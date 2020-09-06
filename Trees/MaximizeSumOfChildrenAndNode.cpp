@@ -122,7 +122,6 @@ class Queue {
 
 #include <iostream>
 using namespace std;
-#include "solution.h"
 
 TreeNode<int>* takeInputLevelWise() {
 	Queue<TreeNode<int>*> q;
@@ -179,4 +178,3 @@ int main() {
     TreeNode<int>* root = takeInputLevelWise();
     cout << maxSumNode(root) -> data << endl;
 }
-
