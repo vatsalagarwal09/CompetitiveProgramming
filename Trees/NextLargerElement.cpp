@@ -1,56 +1,6 @@
 #include <iostream>
 #include <climits>
 using namespace std;
-
-TreeNode<int>* takeInputLevelWise() {
-	Queue<TreeNode<int>*> q;
-	int rootData;
-
-	cin >> rootData;
-	TreeNode<int>* root = new TreeNode<int>(rootData);
-	q.enqueue(root);
-	while (!q.isEmpty()) {
-		TreeNode<int>* frontNode = q.dequeue();
-
-		int numChildren;
-		cin >> numChildren;
-		for (int i = 0; i < numChildren; i++) {
-
-			int childData;
-			cin >> childData;
-			TreeNode<int>* childNode = new TreeNode<int>(childData);
-			q.enqueue(childNode);
-			frontNode->addChild(childNode);
-		}
-	}
-	return root;
-}
-
-TreeNode<int>* nextLargerElement(TreeNode<int> *root, int n) {
-    if(root == NULL){
-        return 0;
-    }
-    TreeNode<int>* ans = NULL;
-    for(int i = 0; i<root->numChildren(); i++){
-        TreeNode<int> *temp = nextLargerElement(root->getChild(i), n);
-        if(temp == NULL){
-            continue;
-        }
-        if(ans == NULL || ans->data > temp->data){
-            ans = temp;    
-        }
-        
-    }
-    
-    if(root->data > n){
-        if(ans == NULL || root->data <= ans->data){
-            return root;
-        }
-    }
-    
-    return ans;
-}
-
 template <typename T>
 class TreeNode {
 	TreeNode<T>** children;
@@ -172,6 +122,56 @@ class Queue {
 
 };
 
+
+TreeNode<int>* takeInputLevelWise() {
+	Queue<TreeNode<int>*> q;
+	int rootData;
+
+	cin >> rootData;
+	TreeNode<int>* root = new TreeNode<int>(rootData);
+	q.enqueue(root);
+	while (!q.isEmpty()) {
+		TreeNode<int>* frontNode = q.dequeue();
+
+		int numChildren;
+		cin >> numChildren;
+		for (int i = 0; i < numChildren; i++) {
+
+			int childData;
+			cin >> childData;
+			TreeNode<int>* childNode = new TreeNode<int>(childData);
+			q.enqueue(childNode);
+			frontNode->addChild(childNode);
+		}
+	}
+	return root;
+}
+
+TreeNode<int>* nextLargerElement(TreeNode<int> *root, int n) {
+    if(root == NULL){
+        return 0;
+    }
+    TreeNode<int>* ans = NULL;
+    for(int i = 0; i<root->numChildren(); i++){
+        TreeNode<int> *temp = nextLargerElement(root->getChild(i), n);
+        if(temp == NULL){
+            continue;
+        }
+        if(ans == NULL || ans->data > temp->data){
+            ans = temp;    
+        }
+        
+    }
+    
+    if(root->data > n){
+        if(ans == NULL || root->data <= ans->data){
+            return root;
+        }
+    }
+    
+    return ans;
+}
+
 int main() {
 	int n;
 	cin >> n;
@@ -183,4 +183,3 @@ int main() {
     else
 	cout << ans -> data << endl;
 }
-
