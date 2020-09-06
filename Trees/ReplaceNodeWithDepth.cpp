@@ -1,79 +1,6 @@
 #include <iostream>
 using namespace std;
 #include<bits/stdc++.h>
-
-TreeNode<int>* takeInputLevelWise() {
-	Queue<TreeNode<int>*> q;
-	int rootData;
-	//cout << "Enter root data" << endl;
-	cin >> rootData;
-	TreeNode<int>* root = new TreeNode<int>(rootData);
-	q.enqueue(root);
-	while (!q.isEmpty()) {
-		TreeNode<int>* frontNode = q.dequeue();
-		//cout << "enter num children of " << frontNode->data << endl;
-		int numChildren;
-		cin >> numChildren;
-		for (int i = 0; i < numChildren; i++) {
-			//cout << "Enter " << i << "th child of " << frontNode->data << endl;
-			int childData;
-			cin >> childData;
-			TreeNode<int>* childNode = new TreeNode<int>(childData);
-			q.enqueue(childNode);
-			frontNode->addChild(childNode);
-		}
-	}
-	return root;
-}
-
-void printLevelATNewLine(TreeNode<int> *root) {
-		Queue<TreeNode<int>*> q;
-		q.enqueue(root);
-		q.enqueue(NULL);
-		while(!q.isEmpty()) {
-			TreeNode<int> *first = q.dequeue();
-			if(first == NULL) {
-				if(q.isEmpty()) {
-					break;
-				}
-				cout << endl;
-				q.enqueue(NULL);
-				continue;
-			}
-			cout << first -> data << " ";
-			for(int i = 0; i < first -> numChildren(); i++) {
-                q.enqueue(first -> getChild(i));
-            }
-		}
-}
-
-int heightHelper(TreeNode<int> *root){
-    int maxAns = 0;
-    for(int i = 0; i<root->numChildren(); i++){
-        maxAns = max(maxAns, heightHelper(root->getChild(i)));
-    }
-    
-    return maxAns + 1;  
-}
-
-void replaceWithDepthValueHelper(TreeNode<int> *root, int height, int x){
-    if(root ==  NULL){
-        return;
-    }
-    root->data = height - x;
-    for(int i = 0; i<root->numChildren(); i++){
-        replaceWithDepthValueHelper(root->getChild(i), height, x-1);
-    }
-    return;
-}
-
-void replaceWithDepthValue(TreeNode<int> *root){    
-	// Write your code here
-    int height = heightHelper(root);
-    replaceWithDepthValueHelper(root, height, height);
-
-}
-
 template <typename T>
 class TreeNode {
 	TreeNode<T>** children;
@@ -195,9 +122,81 @@ class Queue {
 
 };
 
+
+TreeNode<int>* takeInputLevelWise() {
+	Queue<TreeNode<int>*> q;
+	int rootData;
+	//cout << "Enter root data" << endl;
+	cin >> rootData;
+	TreeNode<int>* root = new TreeNode<int>(rootData);
+	q.enqueue(root);
+	while (!q.isEmpty()) {
+		TreeNode<int>* frontNode = q.dequeue();
+		//cout << "enter num children of " << frontNode->data << endl;
+		int numChildren;
+		cin >> numChildren;
+		for (int i = 0; i < numChildren; i++) {
+			//cout << "Enter " << i << "th child of " << frontNode->data << endl;
+			int childData;
+			cin >> childData;
+			TreeNode<int>* childNode = new TreeNode<int>(childData);
+			q.enqueue(childNode);
+			frontNode->addChild(childNode);
+		}
+	}
+	return root;
+}
+
+void printLevelATNewLine(TreeNode<int> *root) {
+		Queue<TreeNode<int>*> q;
+		q.enqueue(root);
+		q.enqueue(NULL);
+		while(!q.isEmpty()) {
+			TreeNode<int> *first = q.dequeue();
+			if(first == NULL) {
+				if(q.isEmpty()) {
+					break;
+				}
+				cout << endl;
+				q.enqueue(NULL);
+				continue;
+			}
+			cout << first -> data << " ";
+			for(int i = 0; i < first -> numChildren(); i++) {
+                q.enqueue(first -> getChild(i));
+            }
+		}
+}
+
+int heightHelper(TreeNode<int> *root){
+    int maxAns = 0;
+    for(int i = 0; i<root->numChildren(); i++){
+        maxAns = max(maxAns, heightHelper(root->getChild(i)));
+    }
+    
+    return maxAns + 1;  
+}
+
+void replaceWithDepthValueHelper(TreeNode<int> *root, int height, int x){
+    if(root ==  NULL){
+        return;
+    }
+    root->data = height - x;
+    for(int i = 0; i<root->numChildren(); i++){
+        replaceWithDepthValueHelper(root->getChild(i), height, x-1);
+    }
+    return;
+}
+
+void replaceWithDepthValue(TreeNode<int> *root){    
+	// Write your code here
+    int height = heightHelper(root);
+    replaceWithDepthValueHelper(root, height, height);
+
+}
+
 int main() {
     TreeNode<int>* root = takeInputLevelWise();
     replaceWithDepthValue(root);
     printLevelATNewLine(root); 
 }
-
