@@ -10,6 +10,7 @@ Topics Covered :
   - LinkedList
   - Stack & Queues
   - Trees
+  - Binary Trees
 
 Installation
 ---------------
