@@ -13,6 +13,7 @@ Topics Covered :
   - Binary Trees
   - Binary Search Trees
   - Priority Queues
+  - Bit Manipulation
 
 Installation
 ---------------
