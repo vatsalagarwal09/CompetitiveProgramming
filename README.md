@@ -11,6 +11,8 @@ Topics Covered :
   - Stack & Queues
   - Trees
   - Binary Trees
+  - Binary Search Trees
+  - Priority Queues
 
 Installation
 ---------------
