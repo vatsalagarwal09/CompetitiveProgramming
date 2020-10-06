@@ -14,6 +14,7 @@ Topics Covered :
   - Binary Search Trees
   - Priority Queues
   - Bit Manipulation
+  - 2 Pointers
 
 Installation
 ---------------
