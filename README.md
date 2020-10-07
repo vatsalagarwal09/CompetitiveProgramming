@@ -15,6 +15,7 @@ Topics Covered :
   - Priority Queues
   - Bit Manipulation
   - 2 Pointers
+  - Backtracking
 
 Installation
 ---------------
