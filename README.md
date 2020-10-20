@@ -16,6 +16,8 @@ Topics Covered :
   - Bit Manipulation
   - 2 Pointers
   - Backtracking
+  - Greedy Algorithm
+  - Binary Search
 
 Installation
 ---------------
